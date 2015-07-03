@@ -1,0 +1,7 @@
+*
+!/.gitignore.d
+!/.gitignore.d/pentadactyl
+!/.pentadactyl
+!/.pentadactyl/plugins
+!/.pentadactyl/plugins/buftabs.js
+!/.pentadactylrc
