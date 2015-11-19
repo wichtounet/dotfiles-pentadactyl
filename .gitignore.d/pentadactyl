@@ -4,4 +4,7 @@
 !/.pentadactyl
 !/.pentadactyl/plugins
 !/.pentadactyl/plugins/buftabs.js
+!/.pentadactyl/colors
+!/.pentadactyl/colors/solarized-dark.penta
+!/.pentadactyl/colors/solarized-light.penta
 !/.pentadactylrc
