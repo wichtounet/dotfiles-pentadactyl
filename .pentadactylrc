@@ -1,5 +1,7 @@
 "hg6978
 
+colorscheme solarized-light
+
 loadplugins '\.(js|penta)$'
 group user
 set guioptions=ns
