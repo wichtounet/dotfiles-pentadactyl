@@ -12,3 +12,5 @@ inoremap jj <esc>
 set hintkeys=asdfjkl
 
 " vim: set ft=pentadactyl:
+
+command flushdns set! network.dnsCacheExpiration=0 | set! network.dnsCacheExpiration&

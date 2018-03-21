@@ -149,8 +149,10 @@ let buftabs = {
         else if (image == '')
             image = BookmarkCache.DEFAULT_FAVICON;
 
-        label.style.paddingLeft = '20px';
+        label.style.paddingLeft = '18px';
         label.style.backgroundImage = 'url("' + image + '")';
+        label.style.backgroundRepeat = 'no-repeat';
+        label.style.backgroundSize = 'contain';
     },
 
     removeFavicon: function(arg) {
@@ -281,6 +283,14 @@ let buftabs = {
             // Fill label
             label.tabpos = idx;
             label.tabindex = window.gBrowser.tabContainer.getIndexOfItem(tab);
+
+            // Initial values
+            label.maxWidth        = '130px';
+            label.style.maxWidth  = '130px';
+            label.style.color     = 'inherit';
+            label.style.margin    = '0px !important';
+            label.style.padding   = '0px !important';
+            label.style.overflow  = 'hidden';
 
             buftabs.fillLabel(label, tab);
         });
@@ -423,16 +433,26 @@ let buftabs = {
                 buftabs.removeFavicon(label);
         }
 
-        // Set the correct highlight group
-        if (tabs.index(null, true) == label.tabpos)
-            label.setAttributeNS(NS, 'highlight', 'BufTabSelected');
-        else {
-            if (tabs.index(tabs.alternate, true) == label.tabpos)
-                label.setAttributeNS(NS, 'highlight', 'BufTabAlternate');
-            else
-                label.setAttributeNS(NS, 'highlight', 'BufTab');
-        }
+        label.style.backgroundRepeat='no-repeat';
+        label.style.backgroundSize='contain, contain';
+        label.style.backgroundPosition=' 2px top';
+        label.style.margin='0 !important';
 
+        // Set the correct style
+        if (tabs.index(null, true) == label.tabpos){
+            label.style.fontWeight='normal';
+            label.style.backgroundColor='#fff';
+            label.style.color='#000';
+            label.style.borderBottomLeftRadius='2px';
+            label.style.borderBottomRightRadius='2px';
+        } else {
+            label.style.fontWeight='bold';
+            label.style.backgroundColor='rgba(0, 0, 0, 1)';
+            label.style.color='#fff';
+            label.style.cursor= 'pointer !important';
+            label.style.borderBottomLeftRadius='0px';
+            label.style.borderBottomRightRadius='0px';
+        }
     },
 
     updateLabelTooltip: function(aLabel, aTab) {
@@ -556,45 +576,6 @@ highlight.loadCSS(literal(function() /*
          margin:0 !important;
          padding:0 !important;
          overflow:hidden;
+         max-width: 130px;
      }
-     BufTabSelected {
-         background-repeat:no-repeat;
-         background-size:contain, contain;
-         background-position: 2px top;
-         background-color:#fff;
-         color:#000;
-         margin:0 !important;
-         font-weight:normal;
-         border-bottom-left-radius:2px;
-         border-bottom-right-radius:2px;
-         max-width:130px;
-     }
-     BufTabAlternate {
-         background-repeat:no-repeat;
-         background-size:contain, contain;
-         background-position: 2px top;
-         margin:0 !important;
-         cursor:pointer !important;
-         max-width:130px;
-    }
-    BufTab {
-        background-repeat:no-repeat;
-        background-size:contain, contain;
-        background-position: 2px top;
-        margin:0 !important;
-        cursor:pointer !important;
-        max-width:130px;
-    }
-    BufTab:hover {
-        color:#2e3330;
-        background-color: #88b090;
-        border-bottom-left-radius:2px;
-        border-bottom-right-radius:2px;
-    }
-    BufTabAlternate:hover {
-        color:#2e3330;
-        background-color: #88b090;
-        border-bottom-left-radius:2px;
-        border-bottom-right-radius:2px;
-    }
 */$), true);
